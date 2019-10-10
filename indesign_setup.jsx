@@ -8,7 +8,7 @@ try{
 
 } catch (error) {
 
-  alert(error.message);
+  alert(error.toString());
 
 }
 

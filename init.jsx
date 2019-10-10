@@ -16,8 +16,20 @@ app.xmlExportPreferences.fileEncoding = XMLFileEncoding.utf8;
       alert("You have to be connected to the internet to use TechLib");
       return;
     }
-    
+
+    #include "./config/constants.jsx"
+    #include "./config/load_cms_constants.jsx"
+
+    #include "./functions/checkout.jsx"
+    #include "./functions/style_mapping.jsx"
+
+    #include "./helpers/api.jsx"
+    #include "./helpers/other.jsx"
+
+    #include "./panels/checkoutPopup.jsx"
     #include "./indesign_setup.jsx"
+
+    TechLib.DOC.loadXMLTags(File(TechLib.DIR+'/xml/tags.xml'));
 
   }
 
