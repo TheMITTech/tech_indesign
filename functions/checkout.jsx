@@ -10,7 +10,7 @@
 var logging = require("logging");
 
 var log = new logging.Log("example.log");
-Zygi.doCheckout = function (id, parts, slug, status_label, callback) {
+TechLib.doCheckout = function (id, parts, slug, status_label, callback) {
   try {
 
     // set the target and check if it's a textbox. If not, create a new textbox.
@@ -37,19 +37,19 @@ Zygi.doCheckout = function (id, parts, slug, status_label, callback) {
     // and also put it into a temp file
     // (it's only possible to import XML from a file in inDesing)
     id = parseInt(id);
-    var xml = Zygi.getArticleXML(id, parts);
+    var xml = TechLib.getArticleXML(id, parts);
 
     log.debug(xml);
     // replace a non-breaking space with a normal space
     // because the xml parser can't deal with those for some reason.
     xml = xml.replace(/&/g,'&amp;');
     var deserialized = new XML(xml);
-    var file = Zygi.putDataToTempFile(xml);
+    var file = TechLib.putDataToTempFile(xml);
 
     // load the tags before importing the actual document
-    Zygi.DOC.loadXMLTags(file);
+    TechLib.DOC.loadXMLTags(file);
 
-    var root = Zygi.DOC.xml(0);
+    var root = TechLib.DOC.xml(0);
     var storyElem = null;
 
     // check if an xml element for this article id already exists.
@@ -68,11 +68,11 @@ Zygi.doCheckout = function (id, parts, slug, status_label, callback) {
 
     // set up paragraph style mapping
     // pass the Core Lib XML element
-    Zygi.setupParagraphMapping(deserialized);
+    TechLib.setupParagraphMapping(deserialized);
 
     // create a new 'story' tag, add atributes to it and
     // put the received xml inside it
-    var storyTag = Zygi.DOC.xmlTags.itemByName('story');
+    var storyTag = TechLib.DOC.xmlTags.itemByName('story');
     storyElem = root.xmlElements.add(storyTag);
     storyElem.xmlAttributes.add('textbox_id', target.id.toString());
     storyElem.xmlAttributes.add('article_id', id.toString());

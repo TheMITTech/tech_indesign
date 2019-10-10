@@ -1,31 +1,31 @@
-Zygi.setupBoldItalicMapping = function() {
+TechLib.setupBoldItalicMapping = function() {
   // Find or create character styles for bold and italic text
-  var boldCharStyle = Zygi.DOC.characterStyles.item('IMPORTED-Bold');
+  var boldCharStyle = TechLib.DOC.characterStyles.item('IMPORTED-Bold');
   if (boldCharStyle == null) {
-    Zygi.DOC.characterStyles.add({name: "IMPORTED-Bold", fontStyle:"Bold"});
-    boldCharStyle = Zygi.DOC.characterStyles.item('IMPORTED-Bold');
+    TechLib.DOC.characterStyles.add({name: "IMPORTED-Bold", fontStyle:"Bold"});
+    boldCharStyle = TechLib.DOC.characterStyles.item('IMPORTED-Bold');
   }
 
-  var italicCharStyle = Zygi.DOC.characterStyles.item('IMPORTED-Italic');
+  var italicCharStyle = TechLib.DOC.characterStyles.item('IMPORTED-Italic');
   if (italicCharStyle == null) {
-    Zygi.DOC.characterStyles.add({name: "IMPORTED-Italic", fontStyle:"Italic"});
-    italicCharStyle = Zygi.DOC.characterStyles.item('IMPORTED-Italic');
+    TechLib.DOC.characterStyles.add({name: "IMPORTED-Italic", fontStyle:"Italic"});
+    italicCharStyle = TechLib.DOC.characterStyles.item('IMPORTED-Italic');
   }
 
   // set the actual mapping
-  Zygi.DOC.xmlImportMaps.add(Zygi.DOC.xmlTags.item("strong"), boldCharStyle);
-  Zygi.DOC.xmlImportMaps.add(Zygi.DOC.xmlTags.item("em"), italicCharStyle);
+  TechLib.DOC.xmlImportMaps.add(TechLib.DOC.xmlTags.item("strong"), boldCharStyle);
+  TechLib.DOC.xmlImportMaps.add(TechLib.DOC.xmlTags.item("em"), italicCharStyle);
 }
 
 // story_xml must be passed as a Core Library XML object
-Zygi.setupParagraphMapping = function(story_xml) {
+TechLib.setupParagraphMapping = function(story_xml) {
   // make sure bold and italic are still mapped correctly
-  Zygi.setupBoldItalicMapping();
+  TechLib.setupBoldItalicMapping();
 
   // set up the style mapping
   try {
     // load the mapping from the cms
-    var style_mapping = Zygi.getStyleMapping();
+    var style_mapping = TechLib.getStyleMapping();
 
     //get the section and the primary tag
     var meta = story_xml.child('metadata');
@@ -53,18 +53,18 @@ Zygi.setupParagraphMapping = function(story_xml) {
     // do the actual mapping:
     // for each [tag, style] pair
     _.each(style_array, function(elem) {
-      var tag = Zygi.DOC.xmlTags.item(elem[0]);
+      var tag = TechLib.DOC.xmlTags.item(elem[0]);
       // if the tag doesn't exist, don't throw an error - just skip it
       if (tag == null) return;
 
       // the style can be in a group:
       // set group to the document by default
-      var group = Zygi.DOC;
+      var group = TechLib.DOC;
       // split the path to get the group and the style name
       var style_args = elem[1].split('::');
       // if the group exists, set group to that group
       if (style_args.length == 2) {
-        group = Zygi.DOC.paragraphStyleGroups.item(style_args[0]);
+        group = TechLib.DOC.paragraphStyleGroups.item(style_args[0]);
         // if the group doesn't exist, throw an error
         if (group == null) throw "Group\n"+style_args[0]+"\nnot found";
       }
@@ -75,7 +75,7 @@ Zygi.setupParagraphMapping = function(story_xml) {
         throw "Style\n"+elem[1]+"\nnot found";
 
       // map the tag to the style
-      Zygi.DOC.xmlImportMaps.add(tag, style);
+      TechLib.DOC.xmlImportMaps.add(tag, style);
     });
   } catch (e) {
     alert("Failed to map the article's styles: \n"+e);
