@@ -1,5 +1,5 @@
 TechLib.API_URL = 'http://api.thetech.com/';
-TechLib.TEMP_FILE_LOCATION = './';
+TechLib.TEMP_FILE_LOCATION = '~/Documents/';
 
 TechLib.DOC = app.documents[0];
 

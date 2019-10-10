@@ -26,9 +26,10 @@ app.xmlExportPreferences.fileEncoding = XMLFileEncoding.utf8;
     #include "./functions/style_mapping.jsx"
 
     #include "./panels/checkoutPopup.jsx"
-    #include "./indesign_setup.jsx"
-
+    
     TechLib.DOC.loadXMLTags(File(TechLib.DIR+'/xml/tags.xml'));
+
+    #include "./indesign_setup.jsx"
 
   }
 
