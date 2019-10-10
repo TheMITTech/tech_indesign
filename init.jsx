@@ -4,7 +4,6 @@ app.xmlExportPreferences.fileEncoding = XMLFileEncoding.utf8;
 (function() {
   function main() {
     #include "../Extendables/extendables.jsx"
-    #include "./cleanup.jsx"
 
     var TechLib = {};
     TechLib.STATE = "Dev"
