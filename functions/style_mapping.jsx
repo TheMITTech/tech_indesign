@@ -77,7 +77,7 @@ TechLib.setupParagraphMapping = function(story_xml) {
       // map the tag to the style
       TechLib.DOC.xmlImportMaps.add(tag, style);
     });
-  } catch (e) {
-    alert("Failed to map the article's styles: \n"+e);
+  } catch (error) {
+    alert("Failed to map the article's styles: \n" + error);
   }
 }

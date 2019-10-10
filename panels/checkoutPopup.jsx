@@ -19,18 +19,19 @@
             row.subItems[1].text = list[i].slug;
             row.subItems[2].text = list[i].id;
         }
-    } catch (e) {
+
+    } catch (error) {
 
         // the response could be wrong (not json)
         // in that case it's ok to just leave the list empty
-        alert("Malformed response received");
+        alert("Malformed response received\n" + error);
 
     }
 
 }
 
-TechLib.checkoutPopup = function(okCallback) {
-    okCallback = okCallback || function() {}
+TechLib.checkoutPopup = function() {
+
     var styling = {
         topRow: {
             size: [1000, 450]
@@ -48,7 +49,7 @@ TechLib.checkoutPopup = function(okCallback) {
         },
 
         buttons: {
-            alignment: ['center', 'bottom']
+            alignment: ['right', 'bottom']
         },
 
         smallInput: {
@@ -67,7 +68,7 @@ TechLib.checkoutPopup = function(okCallback) {
     dialog.window = new Window('palette', 'Check Out', undefined, {resizeable: true});
     dialog.window.onResizing = dialog.window.onResize = function () {this.layout.resize();}
 
-    dialog.text('Text', 'Choose the article you want to check out')
+    dialog.text('Text', 'Choose the article you want to check out');
     var top = dialog.row('top').using('topRow');
 
     top.column('left').using('leftColumn');
@@ -94,8 +95,8 @@ TechLib.checkoutPopup = function(okCallback) {
     TechLib.populateArticleList(TechLib.DEFAULT_VOLUME, TechLib.DEFAULT_ISSUE, listObj);
 
     dialog.row('buttons', '');
-    dialog.buttons.button('ok', 'Check out');
     dialog.buttons.button('no', 'Close');
+    dialog.buttons.button('ok', 'Check out');
     var status_label = dialog.buttons.window.add('statictext', undefined, '');
     status_label.minimumSize.width = 150;
 
@@ -108,8 +109,8 @@ TechLib.checkoutPopup = function(okCallback) {
 
             alert('The numbers must be integers');
 
-            top.left.volume.text = parseInt(vol)
-            top.left.issue.text = parseInt(issue)
+            top.left.volume.text = parseInt(vol);
+            top.left.issue.text = parseInt(issue);
 
         }
 
@@ -183,4 +184,5 @@ TechLib.checkoutPopup = function(okCallback) {
     listObj.window.onDoubleClick = loadArticleCallback;
 
     dialog.window.show();
+
 }
