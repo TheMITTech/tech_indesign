@@ -16,14 +16,14 @@ app.xmlExportPreferences.fileEncoding = XMLFileEncoding.utf8;
       return;
     }
 
+    #include "./helpers/api.jsx"
+    #include "./helpers/other.jsx"
+
     #include "./config/constants.jsx"
     #include "./config/load_cms_constants.jsx"
 
     #include "./functions/checkout.jsx"
     #include "./functions/style_mapping.jsx"
-
-    #include "./helpers/api.jsx"
-    #include "./helpers/other.jsx"
 
     #include "./panels/checkoutPopup.jsx"
     #include "./indesign_setup.jsx"
