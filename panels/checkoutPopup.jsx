@@ -80,7 +80,7 @@ TechLib.checkoutPopup = function() {
 
     top.left.button('load', 'Load articles');
 
-    top.left.text('checkout_label', 'Check out').using('alignLeft');
+    top.left.text('checkout_label', 'Check out | Tech Lib').using('alignLeft');
     var checkboxes = []
     for (var i = 0; i < TechLib.ARTICLE_PARTS.length; i++) {
         var cb = top.left.window.add('checkbox', undefined, TechLib.ARTICLE_PARTS[i]);
@@ -95,10 +95,10 @@ TechLib.checkoutPopup = function() {
     TechLib.populateArticleList(TechLib.DEFAULT_VOLUME, TechLib.DEFAULT_ISSUE, listObj);
 
     dialog.row('buttons', '');
-    dialog.buttons.button('no', 'Close');
-    dialog.buttons.button('ok', 'Check out');
     var status_label = dialog.buttons.window.add('statictext', undefined, '');
     status_label.minimumSize.width = 150;
+    dialog.buttons.button('ok', 'Check out');
+    dialog.buttons.button('no', 'Close');
 
     // define the article list reloading callback
     var articleListParamCallback = function() {

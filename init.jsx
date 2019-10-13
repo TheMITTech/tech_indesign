@@ -22,11 +22,13 @@ app.xmlExportPreferences.fileEncoding = XMLFileEncoding.utf8;
     #include "./config/constants.jsx"
     #include "./config/load_cms_constants.jsx"
 
+    #include "./helpers/GetURLs.jsx"
+
     #include "./functions/checkout.jsx"
     #include "./functions/style_mapping.jsx"
 
     #include "./panels/checkoutPopup.jsx"
-    
+
     TechLib.DOC.loadXMLTags(File(TechLib.DIR+'/xml/tags.xml'));
 
     #include "./indesign_setup.jsx"

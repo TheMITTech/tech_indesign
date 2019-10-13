@@ -1,11 +1,10 @@
-﻿TechLib.receiveAndCheckJson = function(url, retries, method) {
+TechLib.receiveAndCheckJson = function(url, retries) {
 
   try {
 
     if (retries == null) retries = TechLib.DOWNLOAD_FAILURE_REPEAT_COUNT;
-    if (method == null) method = TechLib.http.get;
 
-    var response = method(url);
+    var response = GetURL(url);
     var json_response = response.body.deserialize('json');
     var exp_checksum = json_response.checksum;
     var xml_string = json_response.data;
@@ -25,7 +24,7 @@
 
     }
 
-    else return TechLib.receiveAndCheckJson(url, retries - 1, method);
+    else return TechLib.receiveAndCheckJson(url, retries - 1);
 
   }
 
